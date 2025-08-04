@@ -14,7 +14,7 @@ load_dotenv()
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
-bot = commands.Bot(command_prefix='p!', intents=intents)
+bot = commands.Bot(command_prefix='h!', intents=intents)
 
 active_channels = set()
 blocked_mentions = [r'@everyone', r'@here']
@@ -73,12 +73,12 @@ async def on_message(message):
 @bot.command()
 @commands.has_permissions(administrator=True)
 async def initiate(ctx):
-    print(f"Received p!initiate in channel {ctx.channel.id} by {ctx.author}")
+    print(f"Received h!initiate in channel {ctx.channel.id} by {ctx.author}")
     if ctx.channel.id not in active_channels:
         active_channels.add(ctx.channel.id)
-        await ctx.send("PeteZahBot AI is now active in this channel!")
+        await ctx.send("HavenBot AI is now active in this channel!")
     else:
-        await ctx.send("PeteZahBot AI is already active here!")
+        await ctx.send("HavenBot AI is already active here!")
 
 @bot.command()
 @commands.has_permissions(administrator=True)
@@ -87,9 +87,9 @@ async def stop(ctx):
         active_channels.remove(ctx.channel.id)
         if ctx.channel.id in message_history:
             del message_history[ctx.channel.id]
-        await ctx.send("PeteZahBot AI is now disabled in this channel!")
+        await ctx.send("HavenBot AI is now disabled in this channel!")
     else:
-        await ctx.send("PeteZahBot AI is not active in this channel!")
+        await ctx.send("HavenBot AI is not active in this channel!")
 
 @bot.command()
 @commands.has_permissions(administrator=True)
@@ -173,17 +173,17 @@ async def unlock(ctx, *, reason=None):
 
 @bot.tree.command(name="command", description="List all available commands")
 async def command(interaction: discord.Interaction):
-    embed = discord.Embed(title="PeteZahBot Commands", color=discord.Color.blue())
-    embed.add_field(name="p!initiate", value="Activates AI chat in the channel (Admin only).", inline=False)
-    embed.add_field(name="p!stop", value="Disables AI chat in the channel (Admin only).", inline=False)
-    embed.add_field(name="p!ban @user [reason]", value="Bans a user (Admin only).", inline=False)
-    embed.add_field(name="p!unban user_id [reason]", value="Unbans a user by ID (Admin only).", inline=False)
-    embed.add_field(name="p!kick @user [reason]", value="Kicks a user (Admin only).", inline=False)
-    embed.add_field(name="p!mute @user [reason]", value="Mutes a user (Admin only).", inline=False)
-    embed.add_field(name="p!unmute @user [reason]", value="Unmutes a user (Admin only).", inline=False)
-    embed.add_field(name="p!purge amount", value="Deletes up to 100 messages (Admin only).", inline=False)
-    embed.add_field(name="p!lock [reason]", value="Locks the channel (Admin only).", inline=False)
-    embed.add_field(name="p!unlock [reason]", value="Unlocks the channel (Admin only).", inline=False)
+    embed = discord.Embed(title="HavenBot Commands", color=discord.Color.blue())
+    embed.add_field(name="h!initiate", value="Activates AI chat in the channel (Admin only).", inline=False)
+    embed.add_field(name="h!stop", value="Disables AI chat in the channel (Admin only).", inline=False)
+    embed.add_field(name="h!ban @user [reason]", value="Bans a user (Admin only).", inline=False)
+    embed.add_field(name="h!unban user_id [reason]", value="Unbans a user by ID (Admin only).", inline=False)
+    embed.add_field(name="h!kick @user [reason]", value="Kicks a user (Admin only).", inline=False)
+    embed.add_field(name="h!mute @user [reason]", value="Mutes a user (Admin only).", inline=False)
+    embed.add_field(name="h!unmute @user [reason]", value="Unmutes a user (Admin only).", inline=False)
+    embed.add_field(name="h!purge amount", value="Deletes up to 100 messages (Admin only).", inline=False)
+    embed.add_field(name="h!lock [reason]", value="Locks the channel (Admin only).", inline=False)
+    embed.add_field(name="h!unlock [reason]", value="Unlocks the channel (Admin only).", inline=False)
     embed.add_field(name="/command", value="Shows this command list.", inline=False)
     await interaction.response.send_message(embed=embed)
 
